@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content'
 import Layout from '../../layouts/Layout.astro'
 import Header from '../../components/Header.astro'
 import Card from '../../components/Card.astro'
+import Sponsors from '../../components/Sponsors.astro'
 
 export async function getStaticPaths() {
     const tools = await getCollection('tools')
@@ -24,8 +25,6 @@ const year = new Date().getFullYear()
 const relatedTags = tool.data.tags.map((tag: string) => {
     return tag
 })
-
-console.log(relatedTags)
 
 let groupedTools = {} as any
 for(let i = 0; i < relatedTags.length; i++) {
@@ -84,5 +83,7 @@ const description = `List of free alternative to ${toolTitle} for developers. Fi
         )
     })}
     </div>
+
+    <Sponsors />
 
 </Layout>
